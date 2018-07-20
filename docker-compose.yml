@@ -3,7 +3,7 @@ services:
   nginx:
     image: nginx
     ports:
-      - "80:80"
+      - "6031:80"
     volumes:
       - .:/myproject
       - ./nginx:/etc/nginx/conf.d
@@ -19,7 +19,7 @@ services:
     volumes:
       - .:/myproject
     ports:
-      - "8000:8000"
+      - "8031:8000"
 
   db:
     image: postgres

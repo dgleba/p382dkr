@@ -1,0 +1,2 @@
+10.4.10.118 - - [20/Jul/2018:18:56:27 +0000] "GET / HTTP/1.1" 400 55085 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+10.4.10.118 - - [20/Jul/2018:18:56:27 +0000] "GET /favicon.ico HTTP/1.1" 400 55174 "http://pmdsdata4:6031/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
