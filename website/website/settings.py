@@ -25,7 +25,7 @@ SECRET_KEY = '49=a4w=$$ibseb&ozb1kbcqan04zw-hbn0o2q3i6flz%x%21sg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
