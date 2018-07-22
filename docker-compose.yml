@@ -19,7 +19,7 @@ services:
     volumes:
       - .:/myproject
     ports:
-      - "8031:8000"
+      - "6032:8000"
 
   db:
     image: postgres
