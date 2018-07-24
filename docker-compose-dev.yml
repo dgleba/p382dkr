@@ -12,3 +12,8 @@ services:
       - "6033:8000"
     depends_on:
       - db
+    environment:
+      DJANGO_SECRET_KEY: 1234
+      SECRET_KEY: 1234
+      # MYSQL_ROOT_PASSWORD: root
+
