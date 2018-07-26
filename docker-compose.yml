@@ -3,7 +3,7 @@ services:
   nginx:
     image: nginx
     ports:
-      - "6031:80"
+      - "6041:80"
     volumes:
       - .:/myproject
       - ./docker/nginx:/etc/nginx/conf.d
@@ -19,7 +19,7 @@ services:
     volumes:
       - .:/myproject
     ports:
-      - "6032:8000"
+      - "6042:8000"
 
   db:
     image: postgres
