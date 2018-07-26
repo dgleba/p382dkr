@@ -1,0 +1,2 @@
+2018/07/23 02:26:05 [error] 5#5: *1 open() "/myproject/var/static/admin/css/fonts.css" failed (2: No such file or directory), client: 10.5.253.53, server: , request: "GET /static/admin/css/fonts.css HTTP/1.1", host: "pmdsdata4:6031", referrer: "http://pmdsdata4:6031/"
+2018/07/23 02:32:58 [error] 5#5: *1 open() "/myproject/var/static/admin/css/fonts.css" failed (2: No such file or directory), client: 10.5.253.53, server: , request: "GET /static/admin/css/fonts.css HTTP/1.1", host: "pmdsdata4:6031", referrer: "http://pmdsdata4:6031/"

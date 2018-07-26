@@ -1,0 +1,298 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-20_Fri_15.33-PM
+
+
+
+
+382p
+
+pdata4
+
+
+https://github.com/hugobrilhante/docker-django-gunicorn-nginx-postgres
+https://github.com/hugobrilhante/docker-django-gunicorn-nginx-postgres
+
+looks good.
+see raindrop
+
+2018-07-20_Fri_14.xx-PM
+
+cd /srv/dkr
+git clone https://github.com/hugobrilhante/docker-django-gunicorn-nginx-postgres.git p382dkr 
+cd p382dkr
+
+mkdir -p  logs media static postgres
+
+docker-compose run django django-admin.py startproject myproject .   #  notice the dot at the end of this line.
+
+https://stackoverflow.com/questions/29580798/docker-compose-environment-variables
+https://hub.docker.com/_/postgres/   -- search default
+I made .env.
+
+
+sudo chown -R $USER:$USER .
+
+# 2018-07-20_Fri_14.54-PM
+docker-compose up --build --force-recreate
+
+in.. settings.py
+  ALLOWED_HOSTS = ['*']
+
+docker-compose up 
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-20[Jul-Fri]15-33PM
+
+add polls app
+
+on - pdata4
+
+export feature_name=pollsapp
+export branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+git checkout -b $feature_name
+git commit -am "My feature is ready"
+
+python manage.py startapp polls
+
+django-admin.py startapp polls
+
+django-admin.py makemigrations polls
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-20[Jul-Fri]15-45PM
+
+export feature_name=dj162
+
+export branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+git checkout -b $feature_name
+
+git commit -am "My feature is ready"
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-21[Jul-Sat]23-21PM
+
+mkdir src; cd src
+django-admin.py startproject djsettings .
+
+
+cd /srv/dkr/x
+django-admin.py startproject wsite 
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-22[Jul-Sun]10-27AM
+
+rearrange - the files in to folders --  branch
+
+
+ 1156  git push --all origin
+ 1157  git b
+ 1158  export feature_name=rearrange
+ 1159  export branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+ 1160  git checkout -b $feature_name
+ 1161  git b
+
+
+docker-compose run django django-admin.py startproject website
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-22[Jul-Sun]11-52AM
+
+
+moveprojectfolder
+
+
+export feature_name=moveprojectfolder
+export branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+git checkout -b $feature_name
+
+
+docker-compose run django django-admin.py startproject website
+
+get django start page.
+success.
+
+copy in polls app
+edit settings
+
+
+docker-compose run django django-admin.py migrate
+
+
+raise AppRegistryNotReady("Apps aren't loaded yet.")
+django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+albe@pmdsdata4:/srv/dkr/p382dkr$
+
+
+docker-compose exec django django-admin.py migrate
+
+albe@pmdsdata4:/srv/dkr/p382dkr$ docker-compose exec django django-admin.py migrate
+ERROR: No container found for django_1
+albe@pmdsdata4:/srv/dkr/p382dkr$
+
+docker-compose exec django django-admin.py migrate ERROR: No container found for django_1
+
+docker-compose exec  p382dkr_django_1 django-admin.py migrate
+
+albe@pmdsdata4:/srv/dkr/p382dkr$ docker-compose exec  p382dkr_django_1 django-admin.py migrate
+ERROR: No such service: p382dkr_django_1
+albe@pmdsdata4:/srv/dkr/p382dkr$
+
+
+docker exec p382dkr_django_1 django-admin.py makemigrations
+docker  p382dkr_django_1 django-admin.py migrate
+django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+
+
+ggl.  docker makemigrations django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-22[Jul-Sun]21-39PM
+
+docker-compose exec django  python website/manage.py startapp polls2
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-22[Jul-Sun]21-53PM
+
+sudo ls
+sudo chown -R albe .
+
+git co master
+
+
+
+export feature_name=move_conf_and_var
+export branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+git checkout -b $feature_name
+
+
+mkdir -p  var/logs var/media var/static var/postgres
+
+docker-compose run django  python manage.py startapp polls
+
+
+
+
+docker exec p382dkr_django_1 django-admin.py makemigrations
+.
+albe@pmdsdata4:/srv/dkr/p382dkr$ docker exec p382dkr_django_1 django-admin.py makemigrations
+Traceback (most recent call last):
+  File "/usr/local/bin/django-admin.py", line 5, in <module>
+    management.execute_from_command_line()
+  File "/usr/local/lib/python3.7/site-packages/django/core/management/__init__.py", line 371, in execute_from_command_line
+    utility.execute()
+  File "/usr/local/lib/python3.7/site-packages/django/core/management/__init__.py", line 365, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/usr/local/lib/python3.7/site-packages/django/core/management/__init__.py", line 216, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+  File "/usr/local/lib/python3.7/site-packages/django/core/management/__init__.py", line 36, in load_command_class
+    module = import_module('%s.management.commands.%s' % (app_name, name))
+  File "/usr/local/lib/python3.7/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1006, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 983, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 967, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 677, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/usr/local/lib/python3.7/site-packages/django/core/management/commands/makemigrations.py", line 10, in <module>
+    from django.db.migrations.autodetector import MigrationAutodetector
+  File "/usr/local/lib/python3.7/site-packages/django/db/migrations/autodetector.py", line 11, in <module>
+    from django.db.migrations.questioner import MigrationQuestioner
+  File "/usr/local/lib/python3.7/site-packages/django/db/migrations/questioner.py", line 9, in <module>
+    from .loader import MigrationLoader
+  File "/usr/local/lib/python3.7/site-packages/django/db/migrations/loader.py", line 8, in <module>
+    from django.db.migrations.recorder import MigrationRecorder
+  File "/usr/local/lib/python3.7/site-packages/django/db/migrations/recorder.py", line 9, in <module>
+    class MigrationRecorder:
+  File "/usr/local/lib/python3.7/site-packages/django/db/migrations/recorder.py", line 22, in MigrationRecorder
+    class Migration(models.Model):
+  File "/usr/local/lib/python3.7/site-packages/django/db/models/base.py", line 100, in __new__
+    app_config = apps.get_containing_app_config(module)
+  File "/usr/local/lib/python3.7/site-packages/django/apps/registry.py", line 244, in get_containing_app_config
+    self.check_apps_ready()
+  File "/usr/local/lib/python3.7/site-packages/django/apps/registry.py", line 127, in check_apps_ready
+    raise AppRegistryNotReady("Apps aren't loaded yet.")
+django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+albe@pmdsdata4:/srv/dkr/p382dkr$
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-22[Jul-Sun]22-46PM
+
+startproject know
+
+docker-compose run django django-admin.py startproject djproject2
+
+albe@pmdsdata4:/srv/dkr/p382dkr$ tree
+.
+├── djproject2
+│   ├── djproject2
+│   │   ├── __init__.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   └── manage.py
+
+
+sudo ls
+sudo chown -R albe .
+
+_____________
+
+
+mkdir djproj3 ; cd djproj3
+docker-compose run django django-admin.py startproject djproj4 .    # notice the `.` (dot) in this line.
+
+albe@pmdsdata4:/srv/dkr/p382dkr/djproj3$ docker-compose run django django-admin.py startproject djproj4 .    # notice the `.` (dot) in this line.
+Starting p382dkr_db_1 ... done
+CommandError: /myproject/manage.py already exists, overlaying a project or app into an existing directory won't replace conflicting files
+albe@pmdsdata4:/srv/dkr/p382dkr/djproj3$ 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

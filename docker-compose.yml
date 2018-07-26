@@ -6,14 +6,14 @@ services:
       - "6031:80"
     volumes:
       - .:/myproject
-      - ./nginx:/etc/nginx/conf.d
+      - ./docker/nginx:/etc/nginx/conf.d
     depends_on:
       - django
 
   django:
     build: .
     image: myproject
-    command: gunicorn myproject.wsgi -c ./gunicorn/gunicorn.py -b 0.0.0.0:8000
+    command: gunicorn myproject.wsgi -c ./docker/gunicorn/gunicorn.py -b 0.0.0.0:8000
     depends_on:
       - db
     volumes:
