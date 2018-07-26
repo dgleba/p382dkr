@@ -9,7 +9,7 @@ services:
     volumes:
       - .:/myproject
     ports:
-      - "6033:8000"
+      - "6043:8000"
     depends_on:
       - db
     environment:
