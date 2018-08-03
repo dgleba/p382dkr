@@ -1,3 +1,8 @@
-Django>=1.8,<2.0
+#Django>=1.8,<2.0
+Django==1.8
 psycopg2
 gunicorn
+bootstrap-admin
+mysqlclient
+django-mysql
+#MySQL-python
