@@ -21,7 +21,7 @@ services:
     ports:
       - "6042:8000"
 
-  db:
+  postgresdjango:
     image: postgres
     env_file:
       - .env

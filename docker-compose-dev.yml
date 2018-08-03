@@ -2,7 +2,7 @@ version: '3'
 
 services:
 
-  web:
+  djangodev:
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
@@ -10,7 +10,7 @@ services:
     ports:
       - "6043:8000"
     depends_on:
-      - db
+      - dbdjango
     # environment:
       # DJANGO_SECRET_KEY: 1234
       # SECRET_KEY: 1234
@@ -20,7 +20,7 @@ services:
     networks:
       - one      
 
-  db:
+  dbdjango:
     image: mysql:5.7.22
     restart: always
     # container_name: mysqlpython
@@ -34,33 +34,11 @@ services:
     ports:
       - "6044:3306"
     volumes:
-      - ../data/mysql/:/var/lib/mysql/
+      - ../data/mysql382dev/:/var/lib/mysql/
     networks:
       - one      
       
-  php:
-    #image: php:7.2.2-apache
-    build: ./php
-    image: dkr378php8
-    restart: always
-    container_name: dkr378php8
-    depends_on:
-      - db
-    env_file:
-      - .env
-    volumes:
-      - /var/www/html/:/var/www/html/     
-      # - ./dkr378php6/php/xtra.php.ini:/etc/php5/apache2/conf.d/custom.php.ini
-      # https://stackoverflow.com/questions/41691584/docker-compose-wont-volume-my-php-ini-file
-      # - ./php/:/var/www/html/
-      # - ./dkr378php6/php:/usr/local/etc/php
-      # - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php5/fpm/conf.d/99-overrides.ini    
-    ports:
-      - "6021:80"
-    stdin_open: true
-    tty: true
-    networks:
-      - one
+
       
 networks:
   one:      
