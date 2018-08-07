@@ -9,6 +9,8 @@ services:
       - ./docker/nginx:/etc/nginx/conf.d
     depends_on:
       - django
+    networks:
+      - one      
 
   django:
     build: .
@@ -20,8 +22,12 @@ services:
       - .:/myproject
     ports:
       - "6042:8000"
+    networks:
+      - one      
 
   postgresdjango:
     image: postgres
     env_file:
       - .env
+    networks:
+      - one      
