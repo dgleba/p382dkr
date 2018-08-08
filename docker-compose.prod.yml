@@ -1,4 +1,4 @@
-version: '2'
+version: '3.6'
 services:
   nginx:
     image: nginx
@@ -17,7 +17,7 @@ services:
     image: myproject
     command: gunicorn myproject.wsgi -c ./docker/gunicorn/gunicorn.py -b 0.0.0.0:8000
     depends_on:
-      - db
+      - postgresdjango
     volumes:
       - .:/myproject
     ports:
@@ -31,3 +31,8 @@ services:
       - .env
     networks:
       - one      
+
+networks:
+  one:
+    name: one
+      external:true
