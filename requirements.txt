@@ -2,7 +2,7 @@
 Django==1.8
 psycopg2
 gunicorn
-bootstrap-admin
+bootstrap-admin==0.3.7.1
 mysqlclient
 django-mysql
 #MySQL-python
