@@ -9,8 +9,11 @@ _____________
 _____________
 
 
-## From:  https://github.com/hugobrilhante/docker-django-gunicorn-nginx-postgres
+## The following is From:  
 
+https://github.com/hugobrilhante/docker-django-gunicorn-nginx-postgres
+
+~
 
 
 # django-gunicorn-nginx-postgres
