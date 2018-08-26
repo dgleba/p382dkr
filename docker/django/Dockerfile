@@ -37,14 +37,14 @@ ADD . ${fold}
 WORKDIR ${fold}
 #
 # $fold permissions..
-# this stuff works, but I wanted something more system wide...
+# this stuff works for most of it, but not django-admin.py.  Also I want something more system wide...
 #
 # make group writable to share file management with the www-data group. All in www-data group can manage these files.
 #   RUN chgrp -hR www-data ${fold} ; chown -R www-data  ${fold}
 # also set the group sticky bit, so that the group is set for new files created. chmod g+s /home/shared – jris198944 May 13 '14 at 8:43 
    RUN chmod -R g+rws,o-w  ${fold}
 # make only folders +x so they can be cd into.
-#    RUN find ${fold} -type d -exec chmod g+x {} +
+   RUN find ${fold} -type d -exec chmod g+x {} +
 
 
 # RUN umask 0002 ; pip install -r requirements.txt
@@ -58,5 +58,5 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 # umask returns 0002 but running startproject sftp://albe@10.4.1.227/srv/dkr/dkr382django2t/myproject/settings.py was created without write on group. -rw-r--r-- 1 root www-data 2645 Aug 25 settings.py
 
 
-# has no effect..
-# CMD umask 0002;
+# had no effect?
+CMD umask 0002;

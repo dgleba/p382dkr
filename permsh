@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-docker-compose run djangodev sh docker/dkrfixpermsh
+docker-compose run djangodev sh docker/fixpermsh
 
