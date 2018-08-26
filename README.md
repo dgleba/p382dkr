@@ -1,3 +1,18 @@
+
+# This: 
+
+https://github.com/dgleba/p382dkr  - I should rename it to dkr382r-django
+
+
+_____________
+.
+_____________
+
+
+## From:  https://github.com/hugobrilhante/docker-django-gunicorn-nginx-postgres
+
+
+
 # django-gunicorn-nginx-postgres
 
 The goal of this project is to learn docker but can be used as the basis for real projects.
