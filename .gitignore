@@ -2,3 +2,4 @@
 postgres
 *.pyc
 static/
+var/

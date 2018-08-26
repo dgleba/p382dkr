@@ -5,8 +5,10 @@
 # https://dev.to/acro5piano/specifying-user-and-group-in-docker-i2e
 # user: "${uiddkr}:${giddkr}" in docker-compose 
 export uiddkr=${UID}
-export giddkr=docker
+export GID=www-data
 export giddkr=${GID}
 
-docker-compose  -f docker-compose.prod.yml up --build --force-recreate
+# docker-compose  run djangodev  /bin/bash 
+
+docker-compose   up --build --force-recreate
 

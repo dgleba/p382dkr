@@ -1,14 +1,15 @@
-version: '3'
+version: '3.6'
 
 services:
 
   djangodev:
-    build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
+    build: ./docker/django
+    # user: "${uiddkr}:${giddkr}"
+    command: umask 0002; python3 manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/myproject
     ports:
-      - "6043:8000"
+      - "6046:8000"
     depends_on:
       - dbdjango
     # environment:
@@ -32,13 +33,21 @@ services:
       # MYSQL_USER: dev
       # MYSQL_PASSWORD: dev
     ports:
-      - "6044:3306"
+      - "6047:3306"
     volumes:
       - ../data/mysql382dev/:/var/lib/mysql/
     networks:
       - one      
-      
 
+  adminer:
+    image: adminer:4.6
+    restart: always
+    ports:
+      - "6048:8080"
+      
       
 networks:
-  one:      
+  one:
+    name: one
+      external:true
+  
