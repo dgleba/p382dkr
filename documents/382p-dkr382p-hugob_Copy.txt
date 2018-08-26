@@ -5,11 +5,34 @@ Also see newer file at:  C:\n\Dropbox\csd\0-csd\dkr\dkr382django\382p-dkr382p-hu
 
 
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+1.
+
+see file at 
+C:\n\Dropbox\csd\0-csd\dkr\dkr382django\382p-dkr382p-hugob.txt
+it may be newer.
+
+
+2.
+See newer notes at the bottom first. They are better.
+
+
+
+3.
+see also..
+https://github.com/ruddra/docker-django
+
+
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Title:  .
 -----------------------2018-07-20_Fri_15.33-PM
-
 
 
 
@@ -180,6 +203,8 @@ albe@pmdsdata4:/srv/dkr/p382dkr$
 
 
 docker exec p382dkr_django_1 django-admin.py makemigrations
+
+
 docker  p382dkr_django_1 django-admin.py migrate
 django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
 
@@ -273,7 +298,7 @@ albe@pmdsdata4:/srv/dkr/p382dkr$
 Title:  .
 -----------------------2018-07-22[Jul-Sun]22-46PM
 
-startproject know
+startproject - know
 
 docker-compose run django django-admin.py startproject djproject2
 
@@ -303,3 +328,489 @@ CommandError: /myproject/manage.py already exists, overlaying a project or app i
 albe@pmdsdata4:/srv/dkr/p382dkr/djproj3$ 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-23[Jul-Mon]22-04PM
+
+docker-compose exec web django-admin.py migrate
+
+
+albe@pmdsdata4:/srv/dkr/p382dkr$ docker-compose exec web django-admin.py migrate
+ERROR: No such service: web
+
+
+
+docker exec  p382dkr_web_1 django-admin.py migrate
+
+  File "/usr/local/lib/python3.7/site-packages/django/apps/registry.py", line 127, in check_apps_ready
+    raise AppRegistryNotReady("Apps aren't loaded yet.")
+django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+albe@pmdsdata4:/srv/dkr/p382dkr$
+
+
+_____________
+
+set to python 3.5 and django <2.0
+
+
+albe@pmdsdata4:/srv/dkr/p382dkr$ docker exec  p382dkr_web_1 django-admin.py migrate
+Traceback (most recent call last):
+  File "/usr/local/bin/django-admin.py", line 5, in <module>
+    management.execute_from_command_line()
+  File "/usr/local/lib/python3.5/site-packages/django/core/management/__init__.py", line 364, in execute_from_command_line
+    utility.execute()
+  File "/usr/local/lib/python3.5/site-packages/django/core/management/__init__.py", line 356, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/usr/local/lib/python3.5/site-packages/django/core/management/__init__.py", line 206, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+  File "/usr/local/lib/python3.5/site-packages/django/core/management/__init__.py", line 40, in load_command_class
+    module = import_module('%s.management.commands.%s' % (app_name, name))
+  File "/usr/local/lib/python3.5/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 985, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 968, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 957, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 697, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "/usr/local/lib/python3.5/site-packages/django/core/management/commands/migrate.py", line 15, in <module>
+    from django.db.migrations.autodetector import MigrationAutodetector
+  File "/usr/local/lib/python3.5/site-packages/django/db/migrations/autodetector.py", line 13, in <module>
+    from django.db.migrations.questioner import MigrationQuestioner
+  File "/usr/local/lib/python3.5/site-packages/django/db/migrations/questioner.py", line 12, in <module>
+    from .loader import MigrationLoader
+  File "/usr/local/lib/python3.5/site-packages/django/db/migrations/loader.py", line 10, in <module>
+    from django.db.migrations.recorder import MigrationRecorder
+  File "/usr/local/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 12, in <module>
+    class MigrationRecorder(object):
+  File "/usr/local/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 26, in MigrationRecorder
+    class Migration(models.Model):
+  File "/usr/local/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 27, in Migration
+    app = models.CharField(max_length=255)
+  File "/usr/local/lib/python3.5/site-packages/django/db/models/fields/__init__.py", line 1061, in __init__
+    super(CharField, self).__init__(*args, **kwargs)
+  File "/usr/local/lib/python3.5/site-packages/django/db/models/fields/__init__.py", line 172, in __init__
+    self.db_tablespace = db_tablespace or settings.DEFAULT_INDEX_TABLESPACE
+  File "/usr/local/lib/python3.5/site-packages/django/conf/__init__.py", line 56, in __getattr__
+    self._setup(name)
+  File "/usr/local/lib/python3.5/site-packages/django/conf/__init__.py", line 39, in _setup
+    % (desc, ENVIRONMENT_VARIABLE))
+django.core.exceptions.ImproperlyConfigured: Requested setting DEFAULT_INDEX_TABLESPACE, 
+but settings are not configured. You must either define the 
+environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
+albe@pmdsdata4:/srv/dkr/p382dkr$
+
+
+https://stackoverflow.com/questions/49177473/python-docker-django-django-core-exceptions-improperlyconfigured-error
+
+
+
+-e "DJANGO_SETTINGS_MODULE=mysite.settings"
+
+docker exec -e "DJANGO_SETTINGS_MODULE=myproject.settings" p382dkr_web_1 python manage.py migrate
+
+docker exec  p382dkr_web_1 python manage.py migrate
+
+  File "/myproject/myproject/urls.py", line 17, in <module>
+    from django.urls import path
+ImportError: cannot import name 'path'
+
+
+_____________
+
+I think i have to regerate project with django 1.8 - 2018-07-24_Tue_15.41-PM
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-25[Jul-Wed]16-26PM
+
+
+yes
+docker-compose  -f docker-compose-dev.yml run  web  django-admin.py version 
+docker-compose  -f docker-compose.yml run   django  django-admin.py version 
+
+docker-compose  -f docker-compose-dev.yml run  web  django-admin.py startproject myproject . 
+docker-compose  -f docker-compose-dev.yml run  web  django-admin.py startapp polls
+docker-compose  -f docker-compose-dev.yml run  web  python manage.py makemigrations
+docker-compose  -f docker-compose-dev.yml run  web  python manage.py migrate
+
+
+no.
+
+use web - has
+docker-compose run django django-admin.py startproject myproject .
+
+docker-compose exec web django-admin.py startproject myproject . 
+docker-compose exec web python manage.py startproject myproject . 
+
+python manage.py startapp polls
+
+docker-compose run django django-admin.py startapp polls
+albe@pmdsdata4:/srv/dkr/p382dkr$ docker-compose run django django-admin.py startapp polls
+Starting p382dkr_db_1 ... done
+albe@pmdsdata4:/srv/dkr/p382dkr$
+
+no
+docker-compose exec web django-admin.py migrate
+docker-compose run django django-admin.py migrate
+docker-compose exec django python manage.py makemigrations 
+
+albe@pmdsdata4:/var/www/html/dkr378php$ docker-compose exec django python manage.py makemigrations
+ERROR: No such service: django
+albe@pmdsdata4:/var/www/html/dkr378php$
+
+albe@pmdsdata4:/var/www/html/dkr378php$ docker-compose run web python3 manage.py makemigrations
+Starting dkr378php9mysq ... done
+/usr/local/bin/docker-php-entrypoint: 9: exec: python3: not found
+albe@pmdsdata4:/var/www/html/dkr378php$
+
+ref.
+python manage.py makemigrations polls
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-27[Jul-Fri]16-03PM
+
+docker-compose  -f docker-compose-dev.yml up --build
+
+req...txt
+bootstrap-admin
+
+https://github.com/douglasmiranda/django-admin-bootstrap/tree/0.3.7.1
+
+
+export feature_name=dj162b
+export branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+git checkout -b $feature_name
+
+apps....
+'bootstrap_admin', # always before django.contrib.admin
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-28[Jul-Sat]22-24PM
+
+https://stackoverflow.com/questions/31035887/linking-django-and-mysql-containers-using-docker-compose
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+yes
+
+docker-compose -f docker-compose-dev.yml run web python3 manage.py makemigrations
+
+docker-compose -f docker-compose-dev.yml run web python3 manage.py migrate
+
+
+
+python manage.py createsuperuser
+docker-compose -f docker-compose-dev.yml run web python3 manage.py createsuperuser
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+added php
+
+http://pmdsdata4:6021/adminer/adminer.php?server=db&username=root
+
+http://pmdsdata4:6043/admin/auth/user
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+export feature_name=polls2
+
+export branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+git checkout -b $feature_name
+
+docker-compose -f docker-compose-dev.yml run web django-admin.py startproject myproject .
+docker-compose -f docker-compose-dev.yml run web django-admin.py  startapp poll2
+
+https://docs.djangoproject.com/en/2.0/intro/tutorial02/
+
+docker-compose -f docker-compose-dev.yml run web python manage.py migrate
+
+docker-compose -f docker-compose-dev.yml run web python manage.py createsuperuser
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-08-07[Aug-Tue]19-59PM
+
+change compose file name. 
+refactor.
+
+https://github.com/douglasmiranda/django-admin-bootstrap/tree/0.3.7.1/
+
+
+
+docker-compose run djangodev python3 manage.py makemigrations
+docker-compose run djangodev python3 manage.py migrate
+
+yes.
+  docker-compose run djangodev python manage.py  collectstatic
+
+  no
+  docker-compose run djangodev django-admin.py  collectstatic
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-08-10[Aug-Fri]13-57PM
+
+FILE PERMISSIONS.
+
+
+docker-compose run djangodev /bin/bash
+
+
+albe@pmdsdata4:/srv/dkr/p382dkr$ docker-compose run djangodev /bin/bash
+WARNING: Found orphan containers (p382dkr_nginx_1, p382dkr_django_1, p382dkr_postgresdjango_1) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
+Starting p382dkr_dbdjango_1 ... done
+root@a8bd1bd9c905:/myproject# ll
+bash: ll: command not found
+root@a8bd1bd9c905:/myproject# ls
+Dockerfile  db.sqlite3  docker-compose.prod.yml  documents  myproject  poll2   requirements.txt  var
+README.md   docker      docker-compose.yml       manage.py  php        prodsh  static
+root@a8bd1bd9c905:/myproject# touch tt1
+root@a8bd1bd9c905:/myproject# ls -la
+total 208
+drwxrws--x+ 10 www-data www-data   4096 Aug 10 18:27 .
+drwxr-xr-x  67 root     root       4096 Aug 10 18:27 ..
+-rwxrws--x+  1 www-data www-data    537 Aug  3 19:01 .env
+drwxrws--x+  8 www-data www-data   4096 Aug 10 16:30 .git
+-rwxrws--x+  1 www-data www-data     29 Aug  8 01:03 .gitignore
+-rwxrws--x+  1 www-data www-data    111 Jul 26 14:28 Dockerfile
+-rwxrws--x+  1 www-data www-data    742 Jul 20 18:28 README.md
+-rwxrws--x+  1 www-data www-data 135168 Aug  8 02:00 db.sqlite3
+drwxrws--x+  4 www-data www-data   4096 Jul 26 14:28 docker
+-rwxrws--x+  1 www-data www-data    635 Aug  8 01:15 docker-compose.prod.yml
+-rwxrws--x+  1 www-data www-data    782 Aug  3 20:22 docker-compose.yml
+drwxrws--x+  2 www-data www-data   4096 Jul 26 14:28 documents
+-rwxrws--x+  1 www-data www-data    252 Aug  3 19:01 manage.py
+drwxrws--x+  3 www-data www-data   4096 Aug  3 19:05 myproject
+drwxrws--x+  2 www-data www-data   4096 Aug  3 19:01 php
+drwxrws--x+  4 www-data www-data   4096 Aug  7 23:55 poll2
+-rwxrws--x+  1 www-data www-data    166 Aug  8 01:44 prodsh
+-rwxrws--x+  1 www-data www-data    112 Aug  8 00:27 requirements.txt
+drwxrws--x+  4 www-data www-data   4096 Aug  9 19:52 static
+-rw-r--r--   1 root     www-data      0 Aug 10 18:27 tt1
+drwxrws--x+  3 www-data www-data   4096 Jul 26 14:28 var
+root@a8bd1bd9c905:/myproject#
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-08-10[Aug-Fri]15-26PM
+
+
+add uid
+
+    user: "${uiddkr}:${giddkr}"
+
+  export uiddkr=${UID}
+  export GID=www-data
+  export giddkr=${GID}
+  docker-compose  run djangodev  /bin/bash 
+
+
+    
+
+albe@pmdsdata4:/srv/dkr/dkr382django2$ docker-compose  run djangodev  /bin/bash
+Starting dkr382django2_dbdjango_1 ... done
+I have no name!@5aa1af489434:/myproject$ whoami
+whoami: cannot find name for user ID 1000
+I have no name!@5aa1af489434:/myproject$ touch tt3
+I have no name!@5aa1af489434:/myproject$ ls -la
+total 72
+drwxrws--x+  9 www-data www-data 4096 Aug 10 19:26 .
+drwxr-xr-x  67 root     root     4096 Aug 10 19:23 ..
+-rw-rws---+  1 www-data www-data  537 Aug  9 02:16 .env
+drwxrws--x+  8 www-data www-data 4096 Aug 10 16:31 .git
+-rw-rws---+  1 www-data www-data   29 Aug  9 02:16 .gitignore
+-rw-rws---+  1 www-data www-data  111 Aug  9 02:16 Dockerfile
+-rw-rws---+  1 www-data www-data  742 Aug  9 02:16 README.md
+-rwxrwx--x+  1 www-data www-data  320 Aug 10 19:18 devsh
+drwxrws--x+  4 www-data www-data 4096 Aug  9 02:16 docker
+-rw-rws---+  1 www-data www-data  635 Aug  9 02:16 docker-compose.prod.yml
+-rw-rwx---+  1 www-data www-data  932 Aug 10 19:17 docker-compose.yml
+drwxrws--x+  2 www-data www-data 4096 Aug  9 02:16 documents
+drwxrws--x+  3 www-data www-data 4096 Aug  9 16:55 myproject
+drwxrws--x+  2 www-data www-data 4096 Aug  9 02:16 php
+drwxrws--x+  4 www-data www-data 4096 Aug  9 16:56 poll2
+-rwxrws--x+  1 www-data www-data  347 Aug  9 19:48 prodsh
+-rw-rws---+  1 www-data www-data  112 Aug  9 02:16 requirements.txt
+-rw-r--r--   1 root     www-data    0 Aug 10 19:16 tt2
+-rw-r--r--   1     1000 www-data    0 Aug 10 19:26 tt3
+drwxrws--x+  3 www-data www-data 4096 Aug  9 02:16 var
+I have no name!@5aa1af489434:/myproject$
+
+
+But i deleted tt2 with filezilla. hmmm...
+
+Still tt3 and tt4 has albe as owner. that may do.
+
+drwxrws--x+  4 www-data www-data 4096 Aug  9 12:56 poll2/
+-rwxrws--x+  1 www-data www-data  347 Aug  9 15:48 prodsh*
+-rw-rws---+  1 www-data www-data  742 Aug  8 22:16 README.md*
+-rw-rws---+  1 www-data www-data  112 Aug  8 22:16 requirements.txt*
+-rw-r--r--   1 albe     www-data    0 Aug 10 15:29 tt4
+-rw-r--r--   1 root     www-data   17 Aug 10 15:33 tt6
+drwxrws--x+  3 www-data www-data 4096 Aug  8 22:16 var/
+albe@pmdsdata4:/srv/dkr/dkr382django2$ rm tt6
+rm: remove write-protected regular file ‘tt6’? y
+albe@pmdsdata4:/srv/dkr/dkr382django2$ ll
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-08-24[Aug-Fri]21-41PM
+
+standard_init_linux.go:190: exec user process caused "exec format error"
+
+
+standard_init_linux.go 190 exec user process caused exec format error
+
+
+and shebang /bin/bash to entrypoint.sh
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+docker-compose entrypoint prevents comand line executable command
+
+
+https://github.com/docker-library/wordpress/issues/205
+
+docker-compose entrypoint and command line command
+
+https://docs.docker.com/compose/reference/run/
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-08-24[Aug-Fri]15-39PM
+
+sftp://albe@pmdsdata4/srv/dkr/dkr382django2t
+
+noneed..
+docker-compose -f docker-compose.yml run djangodev django-admin.py startproject myproject .
+
+docker-compose build
+
+
+
+
+sudo rm -r myproject  manage.py db.sqlite3
+#
+docker ps 
+docker ps -a
+docker images
+docker volume ls 
+docker --version
+docker-compose -version
+#
+
+# remove docker containers exited
+docker rm $(docker ps -qa --no-trunc --filter "status=exited")
+#
+# remove tagged <none>
+docker rmi $(docker images | grep "^<none>" | awk '{ print $3 }')
+
+docker rmi dkr382django2t_djangodev
+
+
+
+
+
+docker-compose build  --force-rm 
+
+docker-compose up --build  --force-recreate  
+
+docker-compose run  djangodev /bin/bash
+
+
+
+
+# didn't work.. umask not found..
+# docker-compose run djangodev  umask 0002 && django-admin.py startproject myproject .
+
+
+docker-compose run djangodev   django-admin.py startproject myproject .
+
+
+
+docker-compose  run djangodev django-admin.py  startapp poll2
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-08-25[Aug-Sat]23-13PM
+
+djangodev_1  | /docker-entrypoint.sh: line 3: exec: umask: not found
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+
+
+=
+=
+=
+
+
+
+

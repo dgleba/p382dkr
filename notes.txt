@@ -1,3 +1,0 @@
-
-Command:	mv "p382dkr" "dkr382django"
-Status:	/srv/dkr/p382dkr -> /srv/dkr/dkr382django
